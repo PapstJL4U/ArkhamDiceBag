@@ -1,0 +1,110 @@
+#:kivy 1.0
+#:import kivy kivy
+#:import win kivy.core.window
+FloatLayout:
+    fullscreen: True
+    name: 'DiceBag'
+
+
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            source: 'data/images/background.jpg'
+            size: self.size
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: 1, None
+
+        Button:
+            id: btDraw
+            text: 'Draw'
+
+        Button:
+            id: btContent
+            text: 'Show Bag'
+
+        Button:
+            id: btChange
+            text: 'Change Bag'
+
+<CustomDropDown>:
+    Button:
+        text: 'Clear bag'
+        size_hint_y: None
+        on_release: root.select('Clear')
+
+    Button:
+        id: sliderbt
+        text: 'Add +/- Coin'
+        size_hint_y: None
+        on_release: root.select(slider.value)
+
+    Slider:
+        id: slider
+        size_hint_y: None
+        orientation: 'horizontal'
+        min: -8
+        max: +1
+        step: 1
+        on_touch_move: sliderbt.text = 'Add {} Coin'.format(str(self.value))
+
+    Button:
+        text: 'Add Elder Sign'
+        size_hint_y: None
+        on_release: root.select('elder')
+
+    Button:
+        text: 'Add Skull Coin'
+        size_hint_y: None
+        on_release: root.select('skull')
+
+    Button:
+        text: 'Add Gravestone Coin'
+        size_hint_y: None
+        on_release: root.select('gravestone')
+
+    Button:
+        text: 'Add Akolyth Coin'
+        size_hint_y: None
+        on_release: root.select('akolyth')
+
+    Button:
+        text: 'Add Elder Monster'
+        size_hint_y: None
+        on_release: root.select('monster')
+
+    Button:
+        text: 'Add Tentacle Coin'
+        size_hint_y: None
+        on_release: root.select('tentacle')
+
+
+<Picture>:
+    # each time a picture is created, the image can delay the loading
+    # as soon as the image is loaded, ensure that the center is changed
+    # to the center of the screen.
+    on_size: self.center = win.Window.center
+    size: image.size
+    size_hint: None, None
+
+    Image:
+        id: image
+        source: root.source
+
+        # create initial image to be 400 pixels width
+        size: 400, 400 / self.image_ratio
+
+        # add shadow background
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            BorderImage:
+                source: 'shadow32.png'
+                border: (36,36,36,36)
+                size:(self.width+72, self.height+72)
+                pos: (-36,-36)
+
+
+

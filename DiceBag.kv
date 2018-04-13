@@ -1,10 +1,11 @@
 #:kivy 1.0
 #:import kivy kivy
 #:import win kivy.core.window
+#:import Factory kivy.factory.Factory
+
 FloatLayout:
     fullscreen: True
     name: 'DiceBag'
-
 
     canvas:
         Color:
@@ -30,6 +31,7 @@ FloatLayout:
             text: 'Change Bag'
 
 <CustomDropDown>:
+    id: cdd
     Button:
         text: 'Clear bag'
         size_hint_y: None
@@ -49,6 +51,8 @@ FloatLayout:
         max: +1
         step: 1
         on_touch_move: sliderbt.text = 'Add {} Coin'.format(str(self.value))
+        on_touch_down: sliderbt.text = 'Add {} Coin'.format(str(self.value))
+        on_touch_up: sliderbt.text = 'Add {} Coin'.format(str(self.value))
 
     Button:
         text: 'Add Elder Sign'
@@ -79,6 +83,41 @@ FloatLayout:
         text: 'Add Tentacle Coin'
         size_hint_y: None
         on_release: root.select('tentacle')
+
+    Button:
+        id: btPopup
+        text: 'New Bag'
+        size_hint_y: None
+
+<NewBag>:
+    id: newbag
+    auto_dismiss: True
+    title: "Choose a new Difficulty for the bag."
+    size_hint: (None, None)
+    size: (400, 400)
+    selecet_diff: root.select(
+    BoxLayout:
+        orientation: "vertical"
+        ToggleButton:
+            id: bteasy
+            text: 'Easy'
+            group: 'g1'
+            on_release: newbag.dismiss()
+        ToggleButton:
+            id: btnormal
+            text: 'Normal'
+            group: 'g1'
+            on_release: newbag.dismiss()
+        ToggleButton:
+            id: bthard
+            text: 'Hard'
+            group: 'g1'
+            on_release: newbag.dismiss()
+        ToggleButton:
+            id: btexpert
+            text: 'Expert'
+            group: 'g1'
+            on_release: newbag.dismiss()
 
 
 <Picture>:

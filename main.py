@@ -11,14 +11,15 @@ from kivy.uix.scatter import Scatter
 from kivy.properties import StringProperty, ObjectProperty
 from kivy.uix.widget import Widget
 from kivy.uix.dropdown import DropDown
+from kivy.uix.popup import Popup
 from kivy.graphics.transformation import Matrix
 import Bag
 
 _maxcoins = 20
 
 class CustomDropDown(DropDown):
-
-
+    pass
+class NewBag(Popup):
     pass
 
 class DiceBagApp(App):
@@ -32,10 +33,15 @@ class DiceBagApp(App):
         btChange = self.root.ids.btChange
         btShow = self.root.ids.btContent
         dropdown = CustomDropDown()
+        popup = NewBag()
+        btPopup = dropdown.ids.btPopup
+
         btDraw.bind(on_press=self.drawCoin)
         btChange.bind(on_release=dropdown.open)
         btShow.bind(on_press=self.showBag)
+        btPopup.bind(on_release=popup.open)
         dropdown.bind(on_select=lambda instance, x: self.changeBag(instance, x))
+        popup.bind(on_dismiss=lambda instance: self.makeNewBag(instance))
 
 
     def on_pause(self):
@@ -70,7 +76,7 @@ class DiceBagApp(App):
 
         if value == "1":
             value = "+1"
-        elif value == "Clear":
+        if value == "Clear":
             self.clearBag()
         else:
             #print(value)
@@ -101,6 +107,9 @@ class DiceBagApp(App):
         x = randint(bnd, width-bnd)
         y = randint(bnd, height-bnd)
         return x, y
+
+    def makeNewBag(self, instance):
+        print(instance.ids)
 
 if __name__ == '__main__':
     DiceBagApp().run()

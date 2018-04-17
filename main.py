@@ -41,7 +41,6 @@ class DiceBagApp(App):
         btShow.bind(on_press=self.showBag)
         btPopup.bind(on_release=popup.open)
         dropdown.bind(on_select=lambda instance, x: self.changeBag(instance, x))
-        popup.bind(on_dismiss=lambda instance: self.makeNewBag(instance))
 
 
     def on_pause(self):
@@ -109,7 +108,7 @@ class DiceBagApp(App):
         return x, y
 
     def makeNewBag(self, instance):
-        print(instance.ids)
+        self.myBag = Bag.Bag(difficulty=instance)
 
 if __name__ == '__main__':
     DiceBagApp().run()

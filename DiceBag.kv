@@ -91,11 +91,11 @@ FloatLayout:
 
 <NewBag>:
     id: newbag
+    name: 'diffpop'
     auto_dismiss: True
     title: "Choose a new Difficulty for the bag."
     size_hint: (None, None)
     size: (400, 400)
-    selecet_diff: root.select(
     BoxLayout:
         orientation: "vertical"
         ToggleButton:
@@ -103,21 +103,25 @@ FloatLayout:
             text: 'Easy'
             group: 'g1'
             on_release: newbag.dismiss()
+            on_release: app.makeNewBag('easy')
         ToggleButton:
             id: btnormal
             text: 'Normal'
             group: 'g1'
             on_release: newbag.dismiss()
+            on_release: app.makeNewBag('normal')
         ToggleButton:
             id: bthard
             text: 'Hard'
             group: 'g1'
             on_release: newbag.dismiss()
+            on_release: app.makeNewBag('hard')
         ToggleButton:
             id: btexpert
             text: 'Expert'
             group: 'g1'
             on_release: newbag.dismiss()
+            on_release: app.makeNewBag('expert')
 
 
 <Picture>:

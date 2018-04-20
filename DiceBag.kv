@@ -41,7 +41,7 @@ FloatLayout:
         id: sliderbt
         text: 'Add +/- Coin'
         size_hint_y: None
-        on_release: root.select(slider.value)
+        on_release: root.select(str(int(slider.value)))
 
     Slider:
         id: slider

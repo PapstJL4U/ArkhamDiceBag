@@ -21,7 +21,7 @@ class Bag():
         diff = { "easy" : _easy, "normal" : _standard, "hard": _hard, "expert":_expert}
         if difficulty not in diff:
             return "Nothing to prepare"
-        print(diff[difficulty])
+        #print(diff[difficulty])
 
         for coinvalue in diff[difficulty]:
             self.addCoin(coin=coinvalue)

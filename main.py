@@ -75,8 +75,10 @@ class DiceBagApp(App):
 
         if value == "1":
             value = "+1"
+            self.myBag.addCoin(coin=value)
         if value == "Clear":
             self.clearBag()
+
         else:
             #print(value)
             self.myBag.addCoin(coin=value)
@@ -97,7 +99,7 @@ class DiceBagApp(App):
         for item in clist:
             self.myBag.removeCoin(coin=item)
 
-        print(self.myBag.getBag())
+        #print(self.myBag.getBag())
         self.shownCoins = []
 
     def getRndXY(self):

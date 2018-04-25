@@ -50,9 +50,9 @@ FloatLayout:
         min: -8
         max: +1
         step: 1
-        on_touch_move: sliderbt.text = 'Add {} Coin'.format(str(self.value))
-        on_touch_down: sliderbt.text = 'Add {} Coin'.format(str(self.value))
-        on_touch_up: sliderbt.text = 'Add {} Coin'.format(str(self.value))
+        on_touch_move: sliderbt.text = 'Add {} Coin'.format(str(int(self.value)))
+        on_touch_down: sliderbt.text = 'Add {} Coin'.format(str(int(self.value)))
+        on_touch_up: sliderbt.text = 'Add {} Coin'.format(str(int(self.value)))
 
     Button:
         text: '+ Elder Sign'
@@ -88,7 +88,6 @@ FloatLayout:
         id: btPopup
         text: 'New Bag'
         size_hint_y: None
-
 <NewBag>:
     id: newbag
     name: 'diffpop'

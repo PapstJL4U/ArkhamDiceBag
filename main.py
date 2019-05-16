@@ -21,6 +21,8 @@ class CustomDropDown(DropDown):
     pass
 class NewBag(Popup):
     pass
+class NumCoinAdd(Popup):
+    pass
 
 class DiceBagApp(App):
 
@@ -34,13 +36,18 @@ class DiceBagApp(App):
         btShow = self.root.ids.btContent
         dropdown = CustomDropDown()
         popup = NewBag()
+        coinpop = NumCoinAdd()
+
         btPopup = dropdown.ids.btPopup
+        btCoinpop = dropdown.ids.btCoinpop
 
         btDraw.bind(on_press=self.drawCoin)
         btChange.bind(on_release=dropdown.open)
         btShow.bind(on_press=self.showBag)
         btPopup.bind(on_release=popup.open)
+        btCoinpop.bind(on_release=coinpop.open)
         dropdown.bind(on_select=lambda instance, x: self.changeBag(instance, x))
+
 
 
     def on_pause(self):

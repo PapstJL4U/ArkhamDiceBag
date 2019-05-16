@@ -38,6 +38,11 @@ FloatLayout:
         on_release: root.select('Clear')
 
     Button:
+        id: btCoinpop
+        text: 'Add +/- Coin'
+        size_hint_y: None
+
+    Button:
         id: sliderbt
         text: 'Add +/- Coin'
         size_hint_y: None
@@ -123,6 +128,31 @@ FloatLayout:
             on_release: newbag.dismiss()
             on_release: app.makeNewBag('expert')
 
+<NumCoinAdd>:
+    id: numcoinadd
+    name: 'coinpop'
+    auto_dismiss: True
+    title: "Choose a numeric Coin."
+    size_hint: (None, None)
+    size: (300, 300)
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            id: sliderbtpop
+            text: 'Add +/- Coin'
+            size_hint_y: None
+            on_release: app.changeBag(value=str(int(sliderpop.value)))
+
+        Slider:
+            id: sliderpop
+            size_hint_y: None
+            orientation: 'horizontal'
+            min: -8
+            max: +1
+            step: 1
+            on_touch_move: sliderbtpop.text = 'Add {} Coin'.format(str(self.value))
+            on_touch_down: sliderbtpop.text = 'Add {} Coin'.format(str(self.value))
+            on_touch_up: sliderbtpop.text = 'Add {} Coin'.format(str(self.value))
 
 <Picture>:
     # each time a picture is created, the image can delay the loading

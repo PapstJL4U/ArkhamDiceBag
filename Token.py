@@ -3,11 +3,10 @@ from kivy.uix.scatter import Scatter
 from kivy.uix.image import Image
 from os.path import join, dirname
 
+
 class Token(Scatter):
 
-
-
-    def __init__(self, art="-1", pos_hint={'top':200, 'right':200}):
+    def __init__(self, art="-1", pos_hint={'top': 200, 'right': 200}):
 
         self.pos_hint = pos_hint
         self.art = str(art)
@@ -81,10 +80,10 @@ class Token(Scatter):
             self.image = 'monster.png'
             self.value = 'Monster'
 
-        self.scatter = Scatter(scale_min=0.5, scale_max=3.0)#""", pos_hint=self.pos_hint"""
+        self.scatter = Scatter(scale_min=0.5, scale_max=3.0)  # """, pos_hint=self.pos_hint"""
         self.scatter.size_hint = (None, None)
         self.scatter.auto_bring_to_front = True
-        #print(self.dir, self.path, self.image)
+        # print(self.dir, self.path, self.image)
         path = join(self.dir, self.path, self.image)
         img = Image(source=path)
         self.scatter.height = img.height

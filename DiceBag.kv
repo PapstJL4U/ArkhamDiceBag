@@ -41,23 +41,7 @@ FloatLayout:
         id: btCoinpop
         text: 'Add +/- Coin'
         size_hint_y: None
-
-    Button:
-        id: sliderbt
-        text: 'Add +/- Coin'
-        size_hint_y: None
-        on_release: root.select(str(int(slider.value)))
-
-    Slider:
-        id: slider
-        size_hint_y: None
-        orientation: 'horizontal'
-        min: -8
-        max: +1
-        step: 1
-        on_touch_move: sliderbt.text = 'Add {} Coin'.format(str(self.value))
-        on_touch_down: sliderbt.text = 'Add {} Coin'.format(str(self.value))
-        on_touch_up: sliderbt.text = 'Add {} Coin'.format(str(self.value))
+        on_release: cdd.dismiss()
 
     Button:
         text: 'Add Elder Sign'
@@ -93,6 +77,7 @@ FloatLayout:
         id: btPopup
         text: 'New Bag'
         size_hint_y: None
+        on_release: cdd.dismiss()
 
 <NewBag>:
     id: newbag
@@ -132,16 +117,17 @@ FloatLayout:
     id: numcoinadd
     name: 'coinpop'
     auto_dismiss: True
-    title: "Choose a numeric Coin."
+    title: "Choose a numeric coin."
     size_hint: (None, None)
-    size: (300, 300)
+    size: (500, 300)
     BoxLayout:
         orientation: "vertical"
         Button:
             id: sliderbtpop
             text: 'Add +/- Coin'
             size_hint_y: None
-            on_release: app.changeBag(value=str(int(sliderpop.value)))
+            on_release: numcoinadd.dismiss()
+            on_release: app.changeBag(self, value=str(int(sliderpop.value)))
 
         Slider:
             id: sliderpop
@@ -178,6 +164,3 @@ FloatLayout:
                 border: (36,36,36,36)
                 size:(self.width+72, self.height+72)
                 pos: (-36,-36)
-
-
-

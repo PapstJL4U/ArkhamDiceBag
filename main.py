@@ -1,6 +1,8 @@
-# -*-coding:utf8;-*-
-# qpy:2
-# qpy:kivy
+#-*-coding:utf8;-*-
+#qpy:2
+#qpy:kivy
+# ^ don get any spaces in the comments above. They are qpython imports
+# the app does not work as a kivy app with spaces. Don't autoformat!
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout

@@ -41,6 +41,7 @@ FloatLayout:
         id: btCoinpop
         text: 'Add +/- Coin'
         size_hint_y: None
+        on_release: Factory.NumCoinAdd().open()
         on_release: cdd.dismiss()
 
     Button:
@@ -77,6 +78,7 @@ FloatLayout:
         id: btPopup
         text: 'New Bag'
         size_hint_y: None
+        on_release: Factory.NewBag().open()
         on_release: cdd.dismiss()
 
 <NewBag>:
@@ -85,7 +87,7 @@ FloatLayout:
     auto_dismiss: True
     title: "Choose a new Difficulty for the bag."
     size_hint: (None, None)
-    size: (400, 750)
+    size: (400, 600)
     BoxLayout:
         orientation: "vertical"
         ToggleButton:
@@ -94,18 +96,21 @@ FloatLayout:
             group: 'g1'
             on_release: newbag.dismiss()
             on_release: app.makeNewBag('easy')
+
         ToggleButton:
             id: btnormal
             text: 'Normal'
             group: 'g1'
             on_release: newbag.dismiss()
             on_release: app.makeNewBag('normal')
+
         ToggleButton:
             id: bthard
             text: 'Hard'
             group: 'g1'
             on_release: newbag.dismiss()
             on_release: app.makeNewBag('hard')
+
         ToggleButton:
             id: btexpert
             text: 'Expert'
@@ -138,7 +143,6 @@ FloatLayout:
             step: 1
             on_touch_move: sliderbtpop.text = 'Add {} Coin'.format(str(self.value))
             on_touch_down: sliderbtpop.text = 'Add {} Coin'.format(str(self.value))
-            on_touch_up: sliderbtpop.text = 'Add {} Coin'.format(str(self.value))
 
 <Picture>:
     # each time a picture is created, the image can delay the loading

@@ -1,6 +1,6 @@
-#-*-coding:utf8;-*-
-#qpy:2
-#qpy:kivy
+# -*-coding:utf8;-*-
+# qpy:2
+# qpy:kivy
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -17,12 +17,18 @@ import Bag
 
 _maxcoins = 20
 
+
 class CustomDropDown(DropDown):
     pass
+
+
 class NewBag(Popup):
     pass
+
+
 class NumCoinAdd(Popup):
     pass
+
 
 class DiceBagApp(App):
 
@@ -44,21 +50,19 @@ class DiceBagApp(App):
         btDraw.bind(on_press=self.drawCoin)
         btChange.bind(on_release=dropdown.open)
         btShow.bind(on_press=self.showBag)
-        btPopup.bind(on_release=popup.open)
-        btCoinpop.bind(on_release=coinpop.open)
+        #btPopup.bind(on_release=popup.open)
+        #btCoinpop.bind(on_release=coinpop.open)
         dropdown.bind(on_select=lambda instance, x: self.changeBag(instance, x))
-
-
 
     def on_pause(self):
         return True
 
     def drawCoin(self, instance):
-        if self.myBag.bagSize() is None or self.myBag.bagSize()==0:
+        if self.myBag.bagSize() is None or self.myBag.bagSize() == 0:
             return "Bag is empty"
         self.clearCoins()
         coin = self.myBag.drawCoin()
-        coin.getScatterImage().pos = (0,0)
+        coin.getScatterImage().pos = (0, 0)
         x, y = self.getRndXY()
         mat = Matrix().translate(x, y, 0)
         coin.getScatterImage().apply_transform(mat)
@@ -69,9 +73,9 @@ class DiceBagApp(App):
 
     def showBag(self, instance):
         self.clearCoins()
-        width, height= self.root.size
+        width, height = self.root.size
         for coin in self.myBag.getBag():
-            coin.getScatterImage().pos = (0,0)
+            coin.getScatterImage().pos = (0, 0)
             x, y = self.getRndXY()
             mat = Matrix().translate(x, y, 0)
             coin.getScatterImage().apply_transform(mat)
@@ -87,37 +91,38 @@ class DiceBagApp(App):
             self.clearBag()
 
         else:
-            #print(value)
+            # print(value)
             self.myBag.addCoin(coin=value)
 
     def clearCoins(self):
         for coin in self.shownCoins:
-            #print(coin.getValueAsStr())
-            coin.getScatterImage().pos = (0,0)
+            # print(coin.getValueAsStr())
+            coin.getScatterImage().pos = (0, 0)
             self.root.remove_widget(coin.getScatterImage())
 
     def clearBag(self):
         self.clearCoins()
         clist = []
         for coin in self.myBag.getBag():
-            #print(coin.getValueAsStr())
-            #self.myBag.removeCoin(coin=coin)
+            # print(coin.getValueAsStr())
+            # self.myBag.removeCoin(coin=coin)
             clist.append(coin.getValueAsStr())
         for item in clist:
             self.myBag.removeCoin(coin=item)
 
-        #print(self.myBag.getBag())
+        # print(self.myBag.getBag())
         self.shownCoins = []
 
     def getRndXY(self):
         bnd = 100
         width, height = self.root.size
-        x = randint(bnd, width-bnd)
-        y = randint(bnd, height-bnd)
+        x = randint(bnd, width - bnd)
+        y = randint(bnd, height - bnd)
         return x, y
 
     def makeNewBag(self, instance):
         self.myBag = Bag.Bag(difficulty=instance)
+        self.showBag(instance)
 
 if __name__ == '__main__':
     DiceBagApp().run()

@@ -50,8 +50,8 @@ class DiceBagApp(App):
         btDraw.bind(on_press=self.drawCoin)
         btChange.bind(on_release=dropdown.open)
         btShow.bind(on_press=self.showBag)
-        #btPopup.bind(on_release=popup.open)
-        #btCoinpop.bind(on_release=coinpop.open)
+        # btPopup.bind(on_release=popup.open)
+        # btCoinpop.bind(on_release=coinpop.open)
         dropdown.bind(on_select=lambda instance, x: self.changeBag(instance, x))
 
     def on_pause(self):
@@ -94,6 +94,8 @@ class DiceBagApp(App):
             # print(value)
             self.myBag.addCoin(coin=value)
 
+        self.showsortedBag(instance)
+
     def clearCoins(self):
         for coin in self.shownCoins:
             # print(coin.getValueAsStr())
@@ -123,6 +125,24 @@ class DiceBagApp(App):
     def makeNewBag(self, instance):
         self.myBag = Bag.Bag(difficulty=instance)
         self.showBag(instance)
+
+    def showsortedBag(self, instance):
+        self.clearCoins()
+        width, height = self.root.size
+        bnd = 100
+        x, y, i = 0 + bnd, 0 + bnd, 0
+        for coin in self.myBag.getsortedBag():
+            coin.getScatterImage().pos = (0, 0)
+            x = i * coin.getScatterImage().width - 100
+            mat = Matrix().translate(x, y, 0)
+            coin.getScatterImage().apply_transform(mat)
+            self.root.add_widget(coin.getScatterImage())
+            self.shownCoins.append(coin)
+            if i * coin.getScatterImage().width >= width:
+                y += coin.getScatterImage().height
+                i = 0
+            i += 1
+
 
 if __name__ == '__main__':
     DiceBagApp().run()

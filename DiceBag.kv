@@ -38,6 +38,12 @@ FloatLayout:
         on_release: root.select('Clear')
 
     Button:
+        text: "sort Bag"
+        size_hint_y: None
+        on_release: app.showsortedBag('sorted')
+        on_release: cdd.dismiss()
+
+    Button:
         id: btCoinpop
         text: 'Add +/- Coin'
         size_hint_y: None

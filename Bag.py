@@ -50,3 +50,6 @@ class Bag():
 
     def getBag(self):
         return self.bag
+
+    def getsortedBag(self):
+        return sorted(self.bag)

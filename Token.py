@@ -15,6 +15,8 @@ class Token(Scatter):
         self.image = None
         self.value = None
         self.arkhamInt = re.compile("(\+\-)*[0-9]+")
+        self.compValue = ('Elder', '+1', '0', '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', 'Akolyth', 'Skull',
+                          'Gravestone', 'Monster', 'Tentacle')
 
         if self.art == '+1':
             self.image = 'plusone.png'
@@ -105,3 +107,22 @@ class Token(Scatter):
 
     def getScatterImage(self):
         return self.scatter
+
+
+    """
+    compValue lists markers from highest to lowest value for the player. the elder sign is the most valueable 
+    and the tentacle the least. I use the index to compare them, which is an invert to their gameplay worth
+    """
+    def __gt__(self, other):
+
+        return self.compValue.index(self.value) < self.compValue.index(other.value)
+
+    def __lt__(self, other):
+
+        return self.compValue.index(self.value) > self.compValue.index(other.value)
+
+    def __eq__(self, other):
+        return self.value == other.value
+
+    def __str__(self):
+        return self.getValueAsStr()

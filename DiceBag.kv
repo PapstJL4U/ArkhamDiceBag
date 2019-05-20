@@ -11,7 +11,7 @@ FloatLayout:
         Color:
             rgb: 1, 1, 1
         Rectangle:
-            source: 'images/background.jpg'
+            source: 'images/necrodark.png'
             size: self.size
 
     BoxLayout:
@@ -36,12 +36,6 @@ FloatLayout:
         text: 'Clear bag'
         size_hint_y: None
         on_release: root.select('Clear')
-
-    Button:
-        text: "sort Bag"
-        size_hint_y: None
-        on_release: app.showsortedBag('sorted')
-        on_release: cdd.dismiss()
 
     Button:
         id: btCoinpop
@@ -79,6 +73,12 @@ FloatLayout:
         text: 'Add Old One'
         size_hint_y: None
         on_release: root.select('tentacle')
+
+    Button:
+        text: "Sort Bag"
+        size_hint_y: None
+        on_release: app.showsortedBag('sorted')
+        on_release: cdd.dismiss()
 
     Button:
         id: btPopup

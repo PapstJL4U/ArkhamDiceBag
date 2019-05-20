@@ -37,6 +37,7 @@ class DiceBagApp(App):
     def build(self):
         root = self.root
         self.title = "Dicebag"
+        self.icon = "images/icon.png"
         self.shownCoins = []
         self.myBag = Bag.Bag(difficulty="normal")
         btDraw = self.root.ids.btDraw
@@ -132,15 +133,15 @@ class DiceBagApp(App):
         self.clearCoins()
         width, height = self.root.size
         bnd = 100
-        x, y, i = 0 + bnd, 0 + bnd, 0
+        x, y, i = 0 + bnd, 0 + bnd, 1
         for coin in self.myBag.getsortedBag():
             coin.getScatterImage().pos = (0, 0)
-            x = i * coin.getScatterImage().width - 100
+            x = (i) * coin.getScatterImage().width - bnd
             mat = Matrix().translate(x, y, 0)
             coin.getScatterImage().apply_transform(mat)
             self.root.add_widget(coin.getScatterImage())
             self.shownCoins.append(coin)
-            if i * coin.getScatterImage().width >= width:
+            if (i+1) * coin.getScatterImage().width >= width:
                 y += coin.getScatterImage().height
                 i = 0
             i += 1

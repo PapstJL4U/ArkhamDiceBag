@@ -1,3 +1,4 @@
 title=ArkhamDiceBag
 author=PapstJL4U
 orientation=portrait
+icon=icon.png

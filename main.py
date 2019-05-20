@@ -34,10 +34,12 @@ class NumCoinAdd(Popup):
 
 class DiceBagApp(App):
 
+    icon = 'icon.png'
+
     def build(self):
         root = self.root
         self.title = "Dicebag"
-        self.icon = "images/icon.png"
+        self.icon = 'icon.png'
         self.shownCoins = []
         self.myBag = Bag.Bag(difficulty="normal")
         btDraw = self.root.ids.btDraw
@@ -146,6 +148,11 @@ class DiceBagApp(App):
                 i = 0
             i += 1
 
+    def on_pause(self):
+        return True
+
+    def on_resume(self):
+        pass
 
 if __name__ == '__main__':
     DiceBagApp().run()
